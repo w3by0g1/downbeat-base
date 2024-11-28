@@ -1,0 +1,123 @@
+@font-face {
+  font-family: "BP Dots";
+  src: url("/HelveticaNowVar.woff2") format("woff2");
+  font-weight: 0 1000;
+  font-size: 0 100;
+  font-display: swap;
+}
+
+.variable-font {
+  font-family: "BP Dots";
+  font-weight: 0;
+
+  transition: all 400ms;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  line-height: 1.2;
+  white-space: pre-wrap;
+}
+
+.variable-font-artist {
+  font-family: "BP Dots";
+  font-weight: 0;
+
+  transition: all 800ms;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  line-height: 1.2;
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+#root {
+  max-width: 1280px;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.main-grid {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.input-field {
+  outline: none;
+  background-color: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.main-grid {
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+.main-grid,
+form {
+  position: relative;
+  z-index: 1; /* Ensures it stays above the video */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.centerVideo {
+  transform: translate(-50%, -50%);
+}
+
+.target { 
+  z-index: 0;
+}
+
+.input-field:focus {
+  border-bottom-color: lightblue; /* Change color on focus */
+}
+.input-field:hover {
+  border-bottom-color: gray; /* Change color on hover */
+}
