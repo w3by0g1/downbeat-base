@@ -174,7 +174,7 @@ function App() {
           }   gap-4 mx-auto my-auto  ${
             formCompleted ? "opacity-0" : "opacity-100"
           }
-          xl:h-1/2 lg:h-2/5 md:h-1/3 h-1/5
+          xl:h-1/2 lg:h-2/5 md:h-1/3 h-full
           xl:w-1/2 lg:w-1/2 sm:w-2/5 w-2/6
           `}
           style={{
