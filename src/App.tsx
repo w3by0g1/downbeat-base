@@ -5,9 +5,9 @@ import mkvid from "/mkfinal2.mp4";
 import temzvid from "/temzfinal2.mp4";
 import dvdvid from "/dvdfinal2.mp4";
 import tjtvid from "/tjtfinal2.mp4";
-import { item } from "./framerVariants";
+import { item } from "./framerVariants.js";
 import { motion } from "framer-motion";
-import { db } from "./firebase.jsx";
+import { db } from "./firebase.js";
 
 function App() {
   const initialFormData = {
@@ -26,18 +26,19 @@ function App() {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const [clickedIndex, setClickedIndex] = useState(null);
-  const [isMuted, setIsMuted] = useState([true, true, true, true]);
-  const [isBlurred, setIsBlurred] = useState(["", "", "", ""]);
+  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  const [isMuted, setIsMuted] = useState<boolean[]>([true, true, true, true]);
+  const [isBlurred, setIsBlurred] = useState<string[]>(["", "", "", ""]);
 
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [formCompleted, setFormCompleted] = useState(false);
 
-  const handleGridItemClick = (index) => {
+  const handleGridItemClick = (index: number) => {
     if (clickedIndex === index) {
       setClickedIndex(null);
       updateMuteState(index, true);
       setBackgroundColor("white");
+      setIsBlurred(["", "", "", ""]);
     } else {
       setClickedIndex(index);
       updateMuteState(index, false);
@@ -45,7 +46,7 @@ function App() {
     }
   };
 
-  const updateMuteState = (index, mute) => {
+  const updateMuteState = (index: number, mute: boolean) => {
     setIsMuted((prevState) => {
       const newMutedState = [...prevState];
       newMutedState[index] = mute;
@@ -53,26 +54,27 @@ function App() {
     });
   };
 
-  const updateBlurState = (selectedIndex, blur) => {
-    setIsBlurred((prevState) => {
-      return prevState.map((_, index) => index !== selectedIndex && blur);
-    });
+  const updateBlurState = (selectedIndex: number, blur: string) => {
+    setIsBlurred((prevState) =>
+      prevState.map((_, index) => (index !== selectedIndex ? blur : ""))
+    );
   };
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number) => {
     if (clickedIndex === index) return;
     updateMuteState(index, false);
     updateBlurState(index, "blur-md");
     setBackgroundColor("black");
   };
 
-  const handleMouseLeave = (index) => {
+  const handleMouseLeave = (index: number) => {
     if (clickedIndex === index) return;
     updateMuteState(index, true);
     setBackgroundColor("white");
-    updateBlurState(index, "none");
+    updateBlurState(index, "");
   };
-  const handleChange = (event) => {
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
@@ -130,9 +132,8 @@ function App() {
     };
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     try {
       const docRef = await addDoc(collection(db, "todos"), formData);
       console.log("Document written with ID: ", docRef.id);
@@ -211,6 +212,7 @@ function App() {
                 }`}
                 autoPlay
                 loop
+                playsInline
                 controls={false}
                 muted={isMuted[index]}
                 style={{
