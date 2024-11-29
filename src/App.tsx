@@ -175,7 +175,7 @@ function App() {
             formCompleted ? "opacity-0" : "opacity-100"
           }
           xl:h-1/2 lg:h-2/5 md:h-1/3 h-1/5
-          xl:w-1/2 lg:w-1/2 sm:w-2/5 w-1/2
+          xl:w-1/2 lg:w-1/2 sm:w-2/5 w-3/6
           `}
           style={{
             transition: "all 0.5s ease",
