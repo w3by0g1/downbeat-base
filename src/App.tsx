@@ -184,7 +184,7 @@ function App() {
           {[mkvid, temzvid, dvdvid, tjtvid].map((videoSrc, index) => (
             <div
               key={index}
-              className={`flex items-center justify-center cursor-pointer  ${
+              className={`flex items-center justify-center cursor-pointer aspect-w-16 aspect-h-9 grid-item ${
                 clickedIndex === null || clickedIndex === index
                   ? "opacity-100"
                   : "opacity-0 pointer-events-none"
